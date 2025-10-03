@@ -1,2 +1,2 @@
 # Code-Farmar
-This Will Become a Farming Game Where You can Automate Your Farm by Writing Code
+It is a Farming Game Where you can Write Custom Code to Automate Your Farming.
