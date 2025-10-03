@@ -1,0 +1,154 @@
+[gd_scene load_steps=13 format=4 uid="uid://clia4ebdghccc"]
+
+[ext_resource type="Script" uid="uid://osg2sm72360f" path="res://RobotCode/RobotCode.gd" id="1_w28yb"]
+[ext_resource type="FontFile" uid="uid://dgd4yq20pd3xq" path="res://Assets/m6x11.ttf" id="2_044or"]
+[ext_resource type="TileSet" uid="uid://1bmftsav1kh2" path="res://Assets/AreaTile.tres" id="3_0hq0k"]
+[ext_resource type="Texture2D" uid="uid://b2trf6sh5ksd0" path="res://Assets/Sprite-0002.png" id="4_cvt3f"]
+[ext_resource type="Texture2D" uid="uid://cuk7s684imwda" path="res://Assets/mHero_.png" id="5_w28yb"]
+
+[sub_resource type="Theme" id="Theme_3m42p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3m42p"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrbpc"]
+atlas = ExtResource("5_w28yb")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsl2p"]
+atlas = ExtResource("5_w28yb")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt2la"]
+atlas = ExtResource("5_w28yb")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6whb"]
+atlas = ExtResource("5_w28yb")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6acd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrbpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsl2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt2la")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6whb")
+}],
+"loop": true,
+"name": &"Default",
+"speed": 5.0
+}]
+
+[node name="Technology Lesson 1" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_w28yb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -92.0
+offset_top = -66.0
+offset_right = 718.0
+offset_bottom = 422.0
+color = Color(0.032773, 0.590612, 0.483446, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CommandWindow" type="VBoxContainer" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.5
+offset_top = -136.5
+offset_right = -64.5
+offset_bottom = 136.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3m42p")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CanvasLayer/CommandWindow"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_044or")
+text = "EnterCommands Here"
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer/CommandWindow"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_044or")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/CommandWindow"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="Run" type="Button" parent="CanvasLayer/CommandWindow/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+theme_override_fonts/font = ExtResource("2_044or")
+text = "Run 
+"
+
+[node name="Stop" type="Button" parent="CanvasLayer/CommandWindow/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+theme_override_fonts/font = ExtResource("2_044or")
+disabled = true
+text = "Stop
+"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+
+[node name="RobotGround" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAARAAcAAgABAAEAAAARAAYAAgABAAEAAAARAAUAAgABAAEAAAARAAQAAgABAAEAAAARAAMAAgABAAEAAAAQAAgAAgABAAEAAAAQAAcAAgABAAEAAAAQAAYAAgABAAEAAAAQAAUAAgABAAEAAAAQAAQAAgABAAEAAAAQAAMAAgABAAEAAAAPAAgAAgABAAEAAAAPAAcAAgABAAEAAAAPAAYAAgABAAEAAAAPAAUAAgABAAEAAAAPAAQAAgABAAEAAAAPAAMAAgABAAEAAAAOAAgAAgABAAEAAAAOAAcAAgABAAEAAAAOAAYAAgABAAEAAAAOAAUAAgABAAEAAAAOAAQAAgABAAEAAAAOAAMAAgABAAEAAAANAAgAAgABAAEAAAANAAcAAgABAAEAAAANAAYAAgABAAEAAAANAAUAAgABAAEAAAANAAQAAgABAAEAAAANAAMAAgABAAEAAAAMAAgAAgABAAEAAAAMAAcAAgABAAEAAAAMAAYAAgABAAEAAAAMAAUAAgABAAEAAAAMAAQAAgABAAEAAAAMAAMAAgABAAEAAAALAAgAAgABAAEAAAALAAcAAgABAAEAAAALAAYAAgABAAEAAAALAAUAAgABAAEAAAALAAQAAgABAAEAAAALAAMAAgABAAEAAAAKAAMAAgAAAAEAAAAKAAQAAgAAAAEAAAAKAAUAAgAAAAEAAAAKAAYAAgAAAAEAAAAKAAcAAgAAAAEAAAAKAAgAAgAAAAEAAAARAAgAAgABAAEAAAAMAAkAAgABAAIAAAALAAkAAgABAAIAAAAKAAkAAgAAAAIAAAANAAkAAgABAAIAAAAOAAkAAgABAAIAAAAPAAkAAgABAAIAAAAQAAkAAgABAAIAAAAKAAIAAgAAAAAAAAALAAIAAgABAAAAAAAMAAIAAgABAAAAAAANAAIAAgABAAAAAAAOAAIAAgABAAAAAAAPAAIAAgABAAAAAAAQAAIAAgABAAAAAAARAAIAAgABAAAAAAASAAIAAgACAAAAAAASAAMAAgACAAEAAAASAAQAAgACAAEAAAASAAUAAgACAAEAAAASAAYAAgACAAEAAAASAAcAAgACAAEAAAASAAgAAgACAAEAAAASAAkAAgACAAIAAAARAAkAAgABAAIAAAA=")
+tile_set = ExtResource("3_0hq0k")
+
+[node name="Robot" type="CharacterBody2D" parent="."]
+position = Vector2(400, 176)
+scale = Vector2(2, 2)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Robot"]
+shape = SubResource("RectangleShape2D_3m42p")
+
+[node name="Marker2D" type="Marker2D" parent="Robot/CollisionShape2D"]
+
+[node name="Sprite-0002" type="Sprite2D" parent="Robot/CollisionShape2D/Marker2D"]
+position = Vector2(7, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_cvt3f")
+
+[node name="RayCast2D" type="RayCast2D" parent="Robot/CollisionShape2D"]
+scale = Vector2(0.5, 0.5)
+target_position = Vector2(0, 16)
+
+[node name="RobotSprite" type="AnimatedSprite2D" parent="Robot"]
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_o6acd")
+animation = &"Default"
+autoplay = "Default"
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="button_up" from="CanvasLayer/CommandWindow/HBoxContainer/Run" to="." method="_on_run_button_up"]
+[connection signal="button_up" from="CanvasLayer/CommandWindow/HBoxContainer/Stop" to="." method="_on_stop_button_up"]
