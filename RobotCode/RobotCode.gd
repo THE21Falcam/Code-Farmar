@@ -3,10 +3,6 @@ extends Node2D
 @onready var TestEdit = $CanvasLayer/CommandWindow/TextEdit
 @onready var Robot = $Robot
 
-#func _process(delta: float) -> void:
-	#print(TestEdit.get_line_count()) # gets the number of lines
-	#print(TestEdit.get_line(0)) # Gets Text in cirten line
-
 var max_speed = 100
 var input = Vector2.ZERO
 var direction = Vector2.RIGHT
@@ -17,11 +13,13 @@ var Code_Run = false
 var tile_size = 32
 var animation_speed = 5
 var moving = false
-@onready var line_timer = $Timer
-var inputs = {"Right_Key":Vector2.RIGHT,
-			"UP_Key":Vector2.UP,
-			"Left_Key":Vector2.LEFT,
-			"Down_Key":Vector2.DOWN}
+@onready var line_timer = $Run_Speed_Timer
+var inputs = {
+	"Right_Key":Vector2.RIGHT,
+	"UP_Key":Vector2.UP,
+	"Left_Key":Vector2.LEFT,
+	"Down_Key":Vector2.DOWN
+}
 
 var Current_line = 0
 
@@ -43,22 +41,32 @@ func start_code():
 func _on_line_timer_timeout():
 	if Code_Run and Current_line < TestEdit.get_line_count():
 		var linetext = TestEdit.get_line(Current_line)
-
+		var Split_Command = linetext.split(" ")
 		if linetext == "move_forward":
+			print("Move")
 			move()
 		elif linetext == "turn_left":
+			print("TurnL")
 			$Robot/CollisionShape2D/Marker2D.rotation -= rotation_step
 			direction = direction.rotated(-rotation_step).round()
 			raycast.target_position = direction * tile_size
 			raycast.force_raycast_update()
 		elif linetext == "turn_right":
+			print("TurnR")
 			$Robot/CollisionShape2D/Marker2D.rotation += rotation_step
 			direction = direction.rotated(rotation_step).round()
 			print(direction)
 			raycast.target_position = direction * tile_size
 			raycast.force_raycast_update()
-
-
+		elif Split_Command[0] == "jump_to_line":
+			print("J2L")
+			if Split_Command.size() == 2 && Split_Command[1].is_valid_int():
+				Current_line = int(Split_Command[1]) - 1
+		elif Split_Command[0] == "wait_time":
+			print("Wait")
+			if Split_Command.size() == 2 && Split_Command[1].is_valid_int():
+				await get_tree().create_timer(int(Split_Command[1])).timeout
+			
 		Current_line += 1
 	else:
 		Code_Run = false
@@ -83,11 +91,6 @@ func _on_stop_button_up() -> void:
 	Code_Run = false
 	$CanvasLayer/CommandWindow/HBoxContainer/Run.disabled = false
 	$CanvasLayer/CommandWindow/HBoxContainer/Stop.disabled = true
-
-
-func _on_flag_body_entered(body: Node2D) -> void:
-	$CanvasLayer/ColorRect.visible = true
-
 
 func _on_end_button_button_up() -> void:
 	get_tree().quit()

@@ -47,7 +47,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Technology Lesson 1" type="Node2D"]
+[node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_w28yb")
 
@@ -148,7 +148,7 @@ sprite_frames = SubResource("SpriteFrames_o6acd")
 animation = &"Default"
 autoplay = "Default"
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Run_Speed_Timer" type="Timer" parent="."]
 
 [connection signal="button_up" from="CanvasLayer/CommandWindow/HBoxContainer/Run" to="." method="_on_run_button_up"]
 [connection signal="button_up" from="CanvasLayer/CommandWindow/HBoxContainer/Stop" to="." method="_on_stop_button_up"]
